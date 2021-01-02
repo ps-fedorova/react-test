@@ -1,0 +1,65 @@
+.app {
+  background: #36363b;
+  width: 100vw;
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+}
+
+.app__button-home-link {
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  z-index: 1;
+  padding: 10px;
+  cursor: pointer;
+  background: #ff7c33;
+  transition: .3s;
+  border: none;
+}
+
+.app__button-home-link:hover {
+  background: #efaa87;
+}
+
+.app__button-home-link:focus {
+  background: #ff6713;
+}
+
+.app__img {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+}
+
+.app__img-text {
+  text-align: center;
+  margin: 5px auto;
+  color: black;
+}
+
+.app__home-link {
+  display: flex;
+  flex-wrap: wrap;
+  text-decoration: none;
+  color: black;
+  background: linear-gradient(0deg, rgba(255,255,255,1) 20%, rgba(255, 255, 255, 0) 70%);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.app__list {
+  display: grid;
+  grid-template-columns: repeat(4, 160px);
+  row-gap: 20px;
+  grid-column-gap: 20px;
+  justify-content: center;
+  list-style: none;
+  margin: 0;
+  padding: 5% 0;
+}
+
+.app_item {
+  display: flex;
+  flex-direction: column;
+}
