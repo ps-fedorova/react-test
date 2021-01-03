@@ -3,6 +3,11 @@ import { Route, Switch, useLocation, NavLink, } from 'react-router-dom';
 
 import "./App.css";
 import cat from "../images/cat.png";
+import carousel from "../images/carousel.jpg";
+
+// import Carousel1 from "../components/Carousel1/AppCarousel"
+import Carousel from "../components/Carousel/Carousel";
+import CarouselInfinity from "./CarouselInfinity/CarouselInfinity";
 
 function App() {
 
@@ -16,40 +21,40 @@ function App() {
         <Route exact path="/">
           <ul className="app__list">
             <li className="app__item">
-              <NavLink className="app__home-link" to="/1">
-                <img className="app__img" src={cat} alt="1"/>
-                <p className="app__img-text">1</p>
+              <NavLink className="app__home-link" title='карусель' to="/carousel">
+                <img className="app__img" src={carousel} alt="карусель"/>
+                <p className="app__img-text">простая карусель</p>
               </NavLink>
             </li>
             <li className="app__item">
-              <NavLink className="app__home-link" to="/2">
+              <NavLink className="app__home-link" title='здесь будет бесконечная карусель' to="/carousel-infinity">
                 <img className="app__img" src={cat} alt="2"/>
-                <p className="app__img-text">2</p>
+                <p className="app__img-text">здесь будет бесконечная карусель</p>
               </NavLink>
             </li>
             <li className="app__item">
               <NavLink className="app__home-link" to="/3">
                 <img className="app__img" src={cat} alt="3"/>
-                <p className="app__img-text">3</p>
+                <p className="app__img-text">empty</p>
               </NavLink>
             </li>
             <li className="app__item">
               <NavLink className="app__home-link" to="/4">
                 <img className="app__img" src={cat} alt="4"/>
-                <p className="app__img-text">4</p>
+                <p className="app__img-text">empty</p>
               </NavLink>
             </li>
           </ul>
         </Route>
 
-        <Route path="/1">
-          <div/>
+        {/*<Route path="/1">*/}
+        {/*  <Carousel1/>*/}
+        {/*</Route>*/}
+        <Route path="/carousel">
+          <Carousel/>
         </Route>
-        <Route path="/2">
-          <div/>
-        </Route>
-        <Route path="/3">
-          <div/>
+        <Route path="/carousel-infinity">
+          <CarouselInfinity/>
         </Route>
         <Route path="/4">
           <div/>
@@ -57,8 +62,8 @@ function App() {
       </Switch>
 
 
-      { pathname !== '/' &&
-        <NavLink className="app__home-link" exact to="/">
+      {pathname !== '/' &&
+      <NavLink className="app__home-link" exact to="/">
         <button className="app__button-home-link">
           На главную
         </button>

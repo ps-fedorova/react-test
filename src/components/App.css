@@ -1,7 +1,7 @@
 .app {
   background: #36363b;
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   padding: 0;
   margin: 0;
 }
@@ -30,11 +30,18 @@
   width: 160px;
   height: 160px;
   object-fit: cover;
+  transition: .5s;
+
 }
 
 .app__img-text {
+  height: 45px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
   text-align: center;
-  margin: 5px auto;
+  margin: auto;
   color: black;
 }
 
@@ -43,20 +50,26 @@
   flex-wrap: wrap;
   text-decoration: none;
   color: black;
-  background: linear-gradient(0deg, rgba(255,255,255,1) 20%, rgba(255, 255, 255, 0) 70%);
+  background: linear-gradient(0deg, rgba(255, 255, 255, 1) 20%, rgba(255, 255, 255, 0) 70%);
   border-radius: 10px;
   overflow: hidden;
+  transition: .5s;
 }
 
+/*.app__home-link:hover {*/
+/*  transform: scale(1.25);*/
+/*}*/
+
 .app__list {
+  max-width: 700px;
   display: grid;
-  grid-template-columns: repeat(4, 160px);
+  grid-template-columns: repeat(auto-fill, 160px);
   row-gap: 20px;
   grid-column-gap: 20px;
   justify-content: center;
   list-style: none;
-  margin: 0;
-  padding: 5% 0;
+  margin: 0 auto;
+  padding: 5% 20px;
 }
 
 .app_item {
