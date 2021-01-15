@@ -16,7 +16,7 @@ const SliderArr = [
   "https://s3.us-east-2.amazonaws.com/dzuz14/thumbnails/tree-of-life.jpg"
 ];
 
-const Carousel = () => {
+const CarouselHook = () => {
 
   const [x, setX] = useState(0);
   const [startX, setStartX] = useState(0);
@@ -159,4 +159,4 @@ const Carousel = () => {
   )
 }
 
-export default Carousel;
+export default CarouselHook;

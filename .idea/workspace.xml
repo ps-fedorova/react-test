@@ -11,15 +11,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a28f2035-782c-4217-8392-93ad42cd39e6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/Carousel/Carousel.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Carousel/Carousel.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/CarouselInfinity/CarouselInfinity.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/CarouselInfinity/CarouselInfinity.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/images/carousel.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/CarouselClass/CarouselClass.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/CarouselHook/Carousel.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Timer/Timer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Timer/Timer.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/images/carousel-class.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/images/timer.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintcache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Carousel/Carousel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CarouselHook/CarouselHook.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Carousel/Carousel.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CarouselClass/Carousel.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/images/carousel.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/images/carousel-hook.jpg" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,13 +44,20 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/components" />
     <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.standard" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.standard" value="" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Полина\Практикум\Практика\react-test\src\components" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Полина\Практикум\Практика\react-test\src\components\Carousel" />
       <recent name="D:\Полина\Практикум\Практика\react-test\src\components" />
@@ -68,7 +78,8 @@
       <workItem from="1609576392050" duration="3490000" />
       <workItem from="1609580388543" duration="2762000" />
       <workItem from="1609584232773" duration="29379000" />
-      <workItem from="1609677076674" duration="14486000" />
+      <workItem from="1609677076674" duration="15085000" />
+      <workItem from="1610699766075" duration="21001000" />
     </task>
     <servers />
   </component>
@@ -91,6 +102,10 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="668" y="321" key="#ESLint" timestamp="1610705825070">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="668" y="321" key="#ESLint/0.0.1600.860/-1366.0.1366.768@0.0.1600.860" timestamp="1610705825070" />
     <state x="426" y="107" key="#Inspections" timestamp="1609657854080">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -119,9 +134,9 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="92" y="92" width="1416" height="676" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1600.860/-1366.0.1366.768@0.0.1600.860" timestamp="1609676901575" />
-    <state x="507" y="163" width="585" height="534" key="find.popup" timestamp="1609663951931">
+    <state x="507" y="163" width="585" height="534" key="find.popup" timestamp="1610726334671">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="507" y="163" width="585" height="534" key="find.popup/0.0.1600.860/-1366.0.1366.768@0.0.1600.860" timestamp="1609663951930" />
+    <state x="507" y="163" width="585" height="534" key="find.popup/0.0.1600.860/-1366.0.1366.768@0.0.1600.860" timestamp="1610726334671" />
   </component>
 </project>
