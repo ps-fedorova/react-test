@@ -13,6 +13,10 @@
   margin: 0 auto auto 0;
 }
 
+.carousel__list_mobile {
+  flex-direction: column;
+}
+
 .carousel__item {
   width: 100vw;
   height: 100vh;

@@ -1,9 +1,10 @@
 import React from 'react';
 import s from './Carousel.module.css';
+import MediaQuery from 'react-responsive';
 
 const widthOfTheSlide = 100;
 const standardOfDifference = 50;
-const TimerTranslateX_TIME = 1; // transition time in timer
+const timerTransition = 1; // transition time in timer
 
 const SliderArr = [
   "https://s3.us-east-2.amazonaws.com/dzuz14/thumbnails/redsky.jpg",
@@ -23,31 +24,38 @@ class CarouselClass extends React.Component {
 
     this.state = {
       x: 0,
-      startX: 0,
-      offsetX: 0,
+      startXY: 0,
+      offsetXY: 0,
       mouseDown: false,
-      timerTranslateX: 0,
-      timerTranslateXGo: false,
+      timerTranslateXY: 0,
+      timerTranslateXYGo: false,
     };
-    this.goRight = this.goRight.bind(this);
-    this.goLeft = this.goLeft.bind(this);
-
-    this.handleStartMove = this.handleStartMove.bind(this);
-    this.handleMove = this.handleMove.bind(this);
-    this.handleEndMove = this.handleEndMove.bind(this);
-
+    this.handleClickNext = this.handleClickNext.bind(this);
+    this.handleClickPrev = this.handleClickPrev.bind(this);
     this.swipeKeyboard = this.swipeKeyboard.bind(this);
+
+    this.handleMoveDesktop = this.handleMoveDesktop.bind(this);
+    this.handleStartMoveDesktop = this.handleStartMoveDesktop.bind(this);
+    this.handleEndMoveDesktop = this.handleEndMoveDesktop.bind(this);
+
+    this.handleMoveMobile = this.handleMoveMobile.bind(this);
+    this.handleStartMoveMobile = this.handleStartMoveMobile.bind(this);
+    this.handleEndMoveMobile = this.handleEndMoveMobile.bind(this);
   }
 
   componentDidMount() {
     this.myInterval = setInterval(() => {
-      const { timerTranslateX } = this.state
 
-      if (timerTranslateX > 0) {
-        this.setState(({ timerTranslateX }) => ({
-          timerTranslateX: timerTranslateX - 1
+      if (this.state.timerTranslateXY > 0) {
+        this.setState(({ timerTranslateXY }) => ({
+          timerTranslateXY: timerTranslateXY - 1,
         }))
+      } else {
+        this.setState({
+          timerTranslateXYGo: false
+        })
       }
+
     }, 1000);
 
     window.addEventListener("keydown", this.swipeKeyboard, false);
@@ -57,134 +65,227 @@ class CarouselClass extends React.Component {
     clearInterval(this.myInterval);
     window.removeEventListener("keydown", this.swipeKeyboard, false);
   }
-  
-  goLeft() {
+
+  handleClickPrev() {
     if (this.state.x < 0) {
       this.setState({
         x: (this.state.x + widthOfTheSlide),
-        offsetX: 0,
-        timerTranslateXGo: true,
-        timerTranslateX: (TimerTranslateX_TIME),
+        offsetXY: 0,
+        timerTranslateXYGo: true,
+        timerTranslateXY: (timerTransition),
       })
     }
   }
 
-  goRight() {
+  handleClickNext() {
     if (this.state.x > -widthOfTheSlide * (SliderArr.length - 1)) {
       this.setState({
         x: (this.state.x - widthOfTheSlide),
-        offsetX: 0,
-        timerTranslateXGo: true,
-        timerTranslateX: (TimerTranslateX_TIME),
+        offsetXY: 0,
+        timerTranslateXYGo: true,
+        timerTranslateXY: (timerTransition),
       })
     }
   }
 
+// switching from the keyboard
+  swipeKeyboard(evt) {
+    if (evt.key === 'ArrowRight') this.handleClickNext();
+    if (evt.key === 'ArrowLeft') this.handleClickPrev();
+  }
+
+  handleMoveCommon(difference) {
+    if (difference > standardOfDifference) {
+      this.handleClickNext();
+    } else if (difference < -standardOfDifference) {
+      this.handleClickPrev();
+    } else {
+      this.setState({
+        offsetXY: 0
+      })
+    }
+  }
+
+
 // swipe switching
-  handleStartMove(event) {
+  handleStartMoveDesktop(event) {
     event.preventDefault();
     if (event.type === 'mousedown') {
       this.setState({
-          startX: event.nativeEvent.clientX,
+          startXY: event.nativeEvent.clientX,
           mouseDown: true
         }
       )
 
     } else if (event.type === 'touchstart') {
       this.setState({
-        startX: event.touches[0].clientX
+        startXY: event.touches[0].clientX
       })
     }
   };
 
-  handleMove(event) {
+  handleMoveDesktop(event) {
     if (event.type === 'mousemove' && this.state.mouseDown) {
       this.setState({
-        offsetX: (event.clientX - this.state.startX)
+        offsetXY: (event.clientX - this.state.startXY)
       })
     } else if (event.changedTouches && event.type === 'touchmove') {
       this.setState({
-        offsetX: (event.changedTouches[0].clientX - this.state.startX)
+        offsetXY: (event.changedTouches[0].clientX - this.state.startXY)
       })
     }
   };
 
-  handleEndMove(event) {
+  handleEndMoveDesktop(event) {
     let difference = 0;
     if (event.type === 'mouseup' && this.state.mouseDown) {
-      difference = this.state.startX - event.clientX;
+      difference = this.state.startXY - event.clientX;
       this.setState({
         mouseDown: false
       })
     } else if (event.type === 'mouseout' && this.state.mouseDown) {
-      difference = this.state.startX - event.clientX;
+      difference = this.state.startXY - event.clientX;
       this.setState({
         mouseDown: false
       })
     }
 
     if (event.type === 'touchend') {
-      difference = this.state.startX - event.changedTouches[0].clientX;
+      difference = this.state.startXY - event.changedTouches[0].clientX;
     }
+    this.handleMoveCommon(difference)
+  };
 
-    if (difference > standardOfDifference) {
-      this.goRight();
-    } else if (difference < -standardOfDifference) {
-      this.goLeft();
-    } else {
+// mobile swipe switching
+  handleStartMoveMobile(event) {
+    event.preventDefault();
+    if (event.type === 'mousedown') {
       this.setState({
-        offsetX: 0
+          startXY: event.nativeEvent.clientY,
+          mouseDown: true
+        }
+      )
+
+    } else if (event.type === 'touchstart') {
+      this.setState({
+        startXY: event.touches[0].clientY
       })
     }
   };
 
-// switching from the keyboard
-  swipeKeyboard(evt) {
-    if (evt.key === 'ArrowRight') this.goRight();
-    if (evt.key === 'ArrowLeft') this.goLeft();
-  }
+  handleMoveMobile(event) {
+    if (event.type === 'mousemove' && this.state.mouseDown) {
+      this.setState({
+        offsetXY: (event.clientY - this.state.startXY)
+      })
+    } else if (event.changedTouches && event.type === 'touchmove') {
+      this.setState({
+        offsetXY: (event.changedTouches[0].clientY - this.state.startXY)
+      })
+    }
+  };
+
+  handleEndMoveMobile(event) {
+    let difference = 0;
+    if (event.type === 'mouseup' && this.state.mouseDown) {
+      difference = this.state.startXY - event.clientY;
+      this.setState({
+        mouseDown: false
+      })
+    } else if (event.type === 'mouseout' && this.state.mouseDown) {
+      difference = this.state.startXY - event.clientY;
+      this.setState({
+        mouseDown: false
+      })
+    }
+
+    if (event.type === 'touchend') {
+      difference = this.state.startXY - event.changedTouches[0].clientY;
+    }
+    this.handleMoveCommon(difference)
+  };
 
   render() {
 
     const {
       x,
-      offsetX,
-      timerTranslateXGo,
-      timerTranslateX,
+      offsetXY,
+      timerTranslateXYGo,
+      timerTranslateXY,
     } = this.state
 
     return (
 
       <div className={s.carousel}>
+        <MediaQuery minWidth={600}>
+          <ul className={s.carousel__list}
+              style={{
+                transform: `translateX(calc(${x}vw + ${offsetXY}px))`,
+                transition: timerTranslateXYGo ? `all ${timerTransition}s ease 0s` : "",
+              }}
+              onMouseDown={this.handleStartMoveDesktop}
+              onMouseMove={this.handleMoveDesktop}
+              onMouseUp={this.handleEndMoveDesktop}
+              onMouseOut={this.handleEndMoveDesktop}
 
-        <ul className={s.carousel__list}
-            style={{
-              transform: `translateX(calc(${x}vw + ${offsetX}px))`,
-              transition: timerTranslateXGo ? `all ${TimerTranslateX_TIME}s ease 0s` : "",
-            }}
+              onTouchStart={this.handleStartMoveDesktop}
+              onTouchMove={this.handleMoveDesktop}
+              onTouchEnd={this.handleEndMoveDesktop}
+          >
+            {
+              SliderArr.map((item, index) => {
+                  return (
+                    <li className={s.carousel__item} key={index}>
+                      <img className={s.carousel__itemImg} src={item} alt="Картинка"/>
+                      <input type="checkbox" style={{
+                        marginTop: 200,
+                        marginLeft: 200,
+                        position: 'absolute',
+                        color: 'white',
+                        backgroundColor: 'grey'
+                      }}/>
+                    </li>
+                  )
+                }
+              )}
+          </ul>
+        </MediaQuery>
+        <MediaQuery maxWidth={600}>
+          <ul className={`${s.carousel__list} ${s.carousel__list_mobile}`}
+              style={{
+                transform: `translateY(calc(${x}vh + ${offsetXY}px))`,
+                transition: timerTranslateXYGo ? `all ${timerTransition}s ease 0s` : "",
+              }}
+              onMouseDown={this.handleStartMoveMobile}
+              onMouseMove={this.handleMoveMobile}
+              onMouseUp={this.handleEndMoveMobile}
+              onMouseOut={this.handleEndMoveMobile}
 
-            onMouseDown={this.handleStartMove}
-            onMouseMove={this.handleMove}
-            onMouseUp={this.handleEndMove}
-            onMouseOut={this.handleEndMove}
+              onTouchStart={this.handleStartMoveMobile}
+              onTouchMove={this.handleMoveMobile}
+              onTouchEnd={this.handleEndMoveMobile}
+          >
+            {
+              SliderArr.map((item, index) => {
+                  return (
+                    <li className={s.carousel__item} key={index}>
+                      <img className={s.carousel__itemImg} src={item} alt="Картинка"/>
+                    </li>
+                  )
+                }
+              )}
+          </ul>
+        </MediaQuery>
 
-            onTouchStart={this.handleStartMove}
-            onTouchMove={this.handleMove}
-            onTouchEnd={this.handleEndMove}
-        >
-          {
-            SliderArr.map((item, index) => {
-                return (
-                  <li className={s.carousel__item} key={index}>
-                    <img className={s.carousel__itemImg} src={item} alt="Картинка"/>
-                  </li>
-                )
-              }
-            )}
-        </ul>
-        <div style={{ marginTop: 10, marginLeft: 10, position: 'absolute', color: 'white' }}>{timerTranslateX}</div>
-        <button className={`${s.button} ${s.button_left}`} onClick={this.goLeft}>&larr;</button>
-        <button className={`${s.button} ${s.button_right}`} onClick={this.goRight}>&rarr;</button>
+        <div style={{
+          marginTop: 10,
+          marginLeft: 10,
+          position: 'absolute',
+          color: 'white',
+          backgroundColor: 'grey'
+        }}>{timerTranslateXY}</div>
+        <button className={`${s.button} ${s.button_left}`} onClick={this.handleClickPrev}>&larr;</button>
+        <button className={`${s.button} ${s.button_right}`} onClick={this.handleClickNext}>&rarr;</button>
       </div>
     )
   }
