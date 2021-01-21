@@ -84,9 +84,9 @@ class CarouselClass extends React.Component {
   }
 
   handleMoveCommon(difference) {
-    if (difference > standardOfDifference) {
+    if (difference > standardOfDifference && this.state.x > -widthOfTheSlide * (SliderArr.length - 1)) {
       this.handleClickNext();
-    } else if (difference < -standardOfDifference) {
+    } else if (difference < -standardOfDifference && this.state.x < 0) {
       this.handleClickPrev();
     } else {
       this.setState({

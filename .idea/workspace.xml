@@ -11,15 +11,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a28f2035-782c-4217-8392-93ad42cd39e6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintcache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CarouselClass/Carousel.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Carousel/CarouselClass/CarouselClass.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CarouselClass/CarouselClass.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Carousel/CarouselClass/CarouselClass.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CarouselHook/Carousel.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Carousel/CarouselHook/CarouselHook.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CarouselHook/CarouselHook.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Carousel/CarouselHook/CarouselHook.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CarouselInfinity/CarouselInfinity.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Carousel/CarouselInfinity/CarouselInfinity.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CarouselInfinity/CarouselInfinity.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Carousel/CarouselInfinity/CarouselInfinity.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Carousel/CarouselClass/CarouselClass.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Carousel/CarouselClass/CarouselClass.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,7 +72,7 @@
       <workItem from="1609677076674" duration="15085000" />
       <workItem from="1610699766075" duration="21001000" />
       <workItem from="1610970756215" duration="10619000" />
-      <workItem from="1611234951952" duration="18287000" />
+      <workItem from="1611234951952" duration="18790000" />
     </task>
     <servers />
   </component>
