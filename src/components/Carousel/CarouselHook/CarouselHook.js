@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import s from './Carousel.module.css';
+import s from './CarouselHook.module.css';
 
 const widthOfTheSlide = 100;
 const standardOfDifference = 50;

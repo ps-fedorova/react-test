@@ -13,10 +13,13 @@
     <list default="true" id="a28f2035-782c-4217-8392-93ad42cd39e6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintcache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CarouselClass/Carousel.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CarouselClass/Carousel.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CarouselClass/CarouselClass.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CarouselClass/CarouselClass.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/CarouselClass/Carousel.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Carousel/CarouselClass/CarouselClass.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/CarouselClass/CarouselClass.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Carousel/CarouselClass/CarouselClass.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/CarouselHook/Carousel.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Carousel/CarouselHook/CarouselHook.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/CarouselHook/CarouselHook.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Carousel/CarouselHook/CarouselHook.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/CarouselInfinity/CarouselInfinity.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Carousel/CarouselInfinity/CarouselInfinity.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/CarouselInfinity/CarouselInfinity.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Carousel/CarouselInfinity/CarouselInfinity.module.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,15 +53,15 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\Полина\Практикум\Практика\react-test\src\components" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Полина\Практикум\Практика\react-test\src\components\Carousel" />
       <recent name="D:\Полина\Практикум\Практика\react-test\src\components" />
       <recent name="D:\Полина\Практикум\Практика\react-test\src\components\Slider" />
       <recent name="D:\Полина\Практикум\Практика\react-test\src" />
       <recent name="D:\Полина\Практикум\Практика\react-test\src\assets\images" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Полина\Практикум\Практика\react-test\src\components" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -75,7 +78,8 @@
       <workItem from="1609584232773" duration="29379000" />
       <workItem from="1609677076674" duration="15085000" />
       <workItem from="1610699766075" duration="21001000" />
-      <workItem from="1610970756215" duration="8296000" />
+      <workItem from="1610970756215" duration="10619000" />
+      <workItem from="1611234951952" duration="18287000" />
     </task>
     <servers />
   </component>

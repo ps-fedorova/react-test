@@ -7,10 +7,10 @@ import carouselHook from "../images/carousel-hook.jpg";
 import carouselClass from "../images/carousel-class.jpg";
 import timer from "../images/timer.jpg";
 // import Carousel1 from "../components/Carousel1/AppCarousel"
-import CarouselHook from "./CarouselHook/CarouselHook";
-import CarouselClass from "./CarouselClass/CarouselClass";
+import CarouselHook from "./Carousel/CarouselHook/CarouselHook";
+import CarouselClass from "./Carousel/CarouselClass/CarouselClass";
 import  Timer  from "./Timer/Timer";
-import CarouselInfinity from "./CarouselInfinity/CarouselInfinity";
+import CarouselInfinity from "./Carousel/CarouselInfinity/CarouselInfinity";
 
 function App() {
 

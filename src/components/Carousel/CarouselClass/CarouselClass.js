@@ -1,5 +1,5 @@
 import React from 'react';
-import s from './Carousel.module.css';
+import s from './CarouselClass.module.css';
 import MediaQuery from 'react-responsive';
 
 const widthOfTheSlide = 100;
@@ -30,17 +30,6 @@ class CarouselClass extends React.Component {
       timerTranslateXY: 0,
       timerTranslateXYGo: false,
     };
-    this.handleClickNext = this.handleClickNext.bind(this);
-    this.handleClickPrev = this.handleClickPrev.bind(this);
-    this.swipeKeyboard = this.swipeKeyboard.bind(this);
-
-    this.handleMoveDesktop = this.handleMoveDesktop.bind(this);
-    this.handleStartMoveDesktop = this.handleStartMoveDesktop.bind(this);
-    this.handleEndMoveDesktop = this.handleEndMoveDesktop.bind(this);
-
-    this.handleMoveMobile = this.handleMoveMobile.bind(this);
-    this.handleStartMoveMobile = this.handleStartMoveMobile.bind(this);
-    this.handleEndMoveMobile = this.handleEndMoveMobile.bind(this);
   }
 
   componentDidMount() {
@@ -66,7 +55,7 @@ class CarouselClass extends React.Component {
     window.removeEventListener("keydown", this.swipeKeyboard, false);
   }
 
-  handleClickPrev() {
+  handleClickPrev = () => {
     if (this.state.x < 0) {
       this.setState({
         x: (this.state.x + widthOfTheSlide),
@@ -77,7 +66,7 @@ class CarouselClass extends React.Component {
     }
   }
 
-  handleClickNext() {
+  handleClickNext = () => {
     if (this.state.x > -widthOfTheSlide * (SliderArr.length - 1)) {
       this.setState({
         x: (this.state.x - widthOfTheSlide),
@@ -89,7 +78,7 @@ class CarouselClass extends React.Component {
   }
 
 // switching from the keyboard
-  swipeKeyboard(evt) {
+  swipeKeyboard = (evt) => {
     if (evt.key === 'ArrowRight') this.handleClickNext();
     if (evt.key === 'ArrowLeft') this.handleClickPrev();
   }
@@ -106,104 +95,57 @@ class CarouselClass extends React.Component {
     }
   }
 
-
 // swipe switching
-  handleStartMoveDesktop(event) {
+  handleStartMove = (mobile) => (event) => {
     event.preventDefault();
     if (event.type === 'mousedown') {
-      this.setState({
-          startXY: event.nativeEvent.clientX,
-          mouseDown: true
-        }
-      )
-
+      !mobile
+        ? this.setState({ startXY: event.nativeEvent.clientX, mouseDown: true })
+        : this.setState({ startXY: event.nativeEvent.clientY, mouseDown: true })
     } else if (event.type === 'touchstart') {
-      this.setState({
-        startXY: event.touches[0].clientX
-      })
+      !mobile
+        ? this.setState({ startXY: event.touches[0].clientX })
+        : this.setState({ startXY: event.touches[0].clientY })
     }
-  };
+  }
 
-  handleMoveDesktop(event) {
+
+  handleMove = (mobile) => (event) => {
     if (event.type === 'mousemove' && this.state.mouseDown) {
-      this.setState({
-        offsetXY: (event.clientX - this.state.startXY)
-      })
-    } else if (event.changedTouches && event.type === 'touchmove') {
-      this.setState({
-        offsetXY: (event.changedTouches[0].clientX - this.state.startXY)
-      })
-    }
-  };
+      !mobile
+        ? this.setState({ offsetXY: (event.clientX - this.state.startXY) })
+        : this.setState({ offsetXY: (event.clientY - this.state.startXY) })
 
-  handleEndMoveDesktop(event) {
+    } else if (event.type === 'touchmove' && event.changedTouches) {
+      !mobile
+        ? this.setState({ offsetXY: (event.changedTouches[0].clientX - this.state.startXY) })
+        : this.setState({ offsetXY: (event.changedTouches[0].clientY - this.state.startXY) })
+    }
+  }
+
+
+  handleEndMove = (mobile) => (event) => {
     let difference = 0;
-    if (event.type === 'mouseup' && this.state.mouseDown) {
-      difference = this.state.startXY - event.clientX;
-      this.setState({
-        mouseDown: false
-      })
-    } else if (event.type === 'mouseout' && this.state.mouseDown) {
-      difference = this.state.startXY - event.clientX;
-      this.setState({
-        mouseDown: false
-      })
-    }
 
-    if (event.type === 'touchend') {
-      difference = this.state.startXY - event.changedTouches[0].clientX;
+    if (event.type === 'mouseup' && this.state.mouseDown) {
+      this.setState({ mouseDown: false })
+      !mobile
+        ? difference = this.state.startXY - event.clientX
+        : difference = this.state.startXY - event.clientY
+    } else if (event.type === 'mouseout' && this.state.mouseDown) {
+      this.setState({ mouseDown: false })
+      !mobile
+        ? difference = this.state.startXY - event.clientX
+        : difference = this.state.startXY - event.clientY
+
+    } else if (event.type === 'touchend') {
+      !mobile
+        ? difference = this.state.startXY - event.changedTouches[0].clientX
+        : difference = this.state.startXY - event.changedTouches[0].clientY
     }
     this.handleMoveCommon(difference)
-  };
+  }
 
-// mobile swipe switching
-  handleStartMoveMobile(event) {
-    event.preventDefault();
-    if (event.type === 'mousedown') {
-      this.setState({
-          startXY: event.nativeEvent.clientY,
-          mouseDown: true
-        }
-      )
-
-    } else if (event.type === 'touchstart') {
-      this.setState({
-        startXY: event.touches[0].clientY
-      })
-    }
-  };
-
-  handleMoveMobile(event) {
-    if (event.type === 'mousemove' && this.state.mouseDown) {
-      this.setState({
-        offsetXY: (event.clientY - this.state.startXY)
-      })
-    } else if (event.changedTouches && event.type === 'touchmove') {
-      this.setState({
-        offsetXY: (event.changedTouches[0].clientY - this.state.startXY)
-      })
-    }
-  };
-
-  handleEndMoveMobile(event) {
-    let difference = 0;
-    if (event.type === 'mouseup' && this.state.mouseDown) {
-      difference = this.state.startXY - event.clientY;
-      this.setState({
-        mouseDown: false
-      })
-    } else if (event.type === 'mouseout' && this.state.mouseDown) {
-      difference = this.state.startXY - event.clientY;
-      this.setState({
-        mouseDown: false
-      })
-    }
-
-    if (event.type === 'touchend') {
-      difference = this.state.startXY - event.changedTouches[0].clientY;
-    }
-    this.handleMoveCommon(difference)
-  };
 
   render() {
 
@@ -223,27 +165,20 @@ class CarouselClass extends React.Component {
                 transform: `translateX(calc(${x}vw + ${offsetXY}px))`,
                 transition: timerTranslateXYGo ? `all ${timerTransition}s ease 0s` : "",
               }}
-              onMouseDown={this.handleStartMoveDesktop}
-              onMouseMove={this.handleMoveDesktop}
-              onMouseUp={this.handleEndMoveDesktop}
-              onMouseOut={this.handleEndMoveDesktop}
+              onMouseDown={this.handleStartMove(false)}
+              onMouseMove={this.handleMove(false)}
+              onMouseUp={this.handleEndMove(false)}
+              onMouseOut={this.handleEndMove(false)}
 
-              onTouchStart={this.handleStartMoveDesktop}
-              onTouchMove={this.handleMoveDesktop}
-              onTouchEnd={this.handleEndMoveDesktop}
+              onTouchStart={this.handleStartMove(false)}
+              onTouchMove={this.handleMove(false)}
+              onTouchEnd={this.handleEndMove(false)}
           >
             {
               SliderArr.map((item, index) => {
                   return (
                     <li className={s.carousel__item} key={index}>
                       <img className={s.carousel__itemImg} src={item} alt="Картинка"/>
-                      <input type="checkbox" style={{
-                        marginTop: 200,
-                        marginLeft: 200,
-                        position: 'absolute',
-                        color: 'white',
-                        backgroundColor: 'grey'
-                      }}/>
                     </li>
                   )
                 }
@@ -256,14 +191,14 @@ class CarouselClass extends React.Component {
                 transform: `translateY(calc(${x}vh + ${offsetXY}px))`,
                 transition: timerTranslateXYGo ? `all ${timerTransition}s ease 0s` : "",
               }}
-              onMouseDown={this.handleStartMoveMobile}
-              onMouseMove={this.handleMoveMobile}
-              onMouseUp={this.handleEndMoveMobile}
-              onMouseOut={this.handleEndMoveMobile}
+              onMouseDown={this.handleStartMove(true)}
+              onMouseMove={this.handleMove(true)}
+              onMouseUp={this.handleEndMove(true)}
+              onMouseOut={this.handleEndMove(true)}
 
-              onTouchStart={this.handleStartMoveMobile}
-              onTouchMove={this.handleMoveMobile}
-              onTouchEnd={this.handleEndMoveMobile}
+              onTouchStart={this.handleStartMove(true)}
+              onTouchMove={this.handleMove(true)}
+              onTouchEnd={this.handleEndMove(true)}
           >
             {
               SliderArr.map((item, index) => {
