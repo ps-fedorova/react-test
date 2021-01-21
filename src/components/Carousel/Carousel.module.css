@@ -3,6 +3,7 @@
   height: 100vh;
   overflow: hidden;
   position: relative;
+  touch-action: none;
 }
 
 .carousel__list {
@@ -11,7 +12,6 @@
   padding: 0;
   position: absolute;
   margin: 0 auto auto 0;
-  touch-action: none;
 }
 
 .carousel__list_mobile {
