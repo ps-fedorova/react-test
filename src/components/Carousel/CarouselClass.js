@@ -1,5 +1,5 @@
 import React from 'react';
-import s from './CarouselClass.module.css';
+import s from './Carousel.module.css';
 import MediaQuery from 'react-responsive';
 
 const widthOfTheSlide = 100;

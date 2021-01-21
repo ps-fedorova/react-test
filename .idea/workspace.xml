@@ -11,8 +11,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a28f2035-782c-4217-8392-93ad42cd39e6" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintcache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Carousel/CarouselClass/CarouselClass.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Carousel/CarouselClass/CarouselClass.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Carousel/CarouselClass/CarouselClass.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Carousel/CarouselClass.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Carousel/CarouselClass/CarouselClass.module.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Carousel/CarouselHook/CarouselHook.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Carousel/CarouselHook.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Carousel/CarouselHook/CarouselHook.module.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Carousel/CarouselInfinity/CarouselInfinity.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Carousel/CarouselInfinity.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Carousel/CarouselInfinity/CarouselInfinity.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Carousel/Carousel.module.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,7 +79,7 @@
       <workItem from="1609677076674" duration="15085000" />
       <workItem from="1610699766075" duration="21001000" />
       <workItem from="1610970756215" duration="10619000" />
-      <workItem from="1611234951952" duration="18790000" />
+      <workItem from="1611234951952" duration="19637000" />
     </task>
     <servers />
   </component>
@@ -103,10 +110,10 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="426" y="107" key="#Inspections/0.0.1600.860/-1366.0.1366.768@0.0.1600.860" timestamp="1609657854080" />
-    <state x="530" y="176" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1609338438101">
+    <state x="530" y="176" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1611257755688">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="530" y="176" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1600.860/-1366.0.1366.768@0.0.1600.860" timestamp="1609338438101" />
+    <state x="530" y="176" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1600.860/-1366.0.1366.768@0.0.1600.860" timestamp="1611257755688" />
     <state width="1578" height="2" key="GridCell.Tab.0.bottom" timestamp="1609583701287">
       <screen x="0" y="0" width="1600" height="860" />
     </state>

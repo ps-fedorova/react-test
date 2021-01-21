@@ -7,10 +7,10 @@ import carouselHook from "../images/carousel-hook.jpg";
 import carouselClass from "../images/carousel-class.jpg";
 import timer from "../images/timer.jpg";
 // import Carousel1 from "../components/Carousel1/AppCarousel"
-import CarouselHook from "./Carousel/CarouselHook/CarouselHook";
-import CarouselClass from "./Carousel/CarouselClass/CarouselClass";
+import CarouselHook from "./Carousel/CarouselHook";
+import CarouselClass from "./Carousel/CarouselClass";
 import  Timer  from "./Timer/Timer";
-import CarouselInfinity from "./Carousel/CarouselInfinity/CarouselInfinity";
+import CarouselInfinity from "./Carousel/CarouselInfinity";
 
 function App() {
 
@@ -24,13 +24,13 @@ function App() {
         <Route exact path="/">
           <ul className="app__list">
             <li className="app__item">
-              <NavLink className="app__home-link" title='карусель' to="/carousel-hook">
+              <NavLink className="app__home-link" title="простая карусель (hook)" to="/carousel-hook">
                 <img className="app__img" src={carouselHook} alt="карусель"/>
                 <p className="app__img-text">простая карусель (hook)</p>
               </NavLink>
             </li>
             <li className="app__item">
-              <NavLink className="app__home-link" to="/carousel-class">
+              <NavLink className="app__home-link" title="направление свайпа меняется при 600px" to="/carousel-class">
                 <img className="app__img" src={carouselClass} alt="3"/>
                 <p className="app__img-text">простая карусель (class)</p>
               </NavLink>
@@ -44,7 +44,7 @@ function App() {
             <li className="app__item">
             </li>
             <li className="app__item">
-              <NavLink className="app__home-link" to="/timer">
+              <NavLink className="app__home-link" title="таймер (class)" to="/timer">
                 <img className="app__img" src={timer} alt="timer"/>
                 <p className="app__img-text">таймер (class)</p>
               </NavLink>

@@ -1,22 +1,57 @@
 import React, { useState, useEffect, useRef } from 'react';
-import s from './CarouselHook.module.css';
+import s from './Carousel.module.css';
 
-const widthOfTheSlide = 100;
+const widthOfTheSlide = 100 / 3;
 const standardOfDifference = 50;
 const TIMER_TIME = 1; // transition time in seconds
 
+// const SliderArr = [
+//   "https://s3.us-east-2.amazonaws.com/dzuz14/thumbnails/aurora.jpg",
+//   "https://s3.us-east-2.amazonaws.com/dzuz14/thumbnails/canyon.jpg",
+//   "https://s3.us-east-2.amazonaws.com/dzuz14/thumbnails/city.jpg",
+//   "https://s3.us-east-2.amazonaws.com/dzuz14/thumbnails/desert.jpg",
+//   "https://s3.us-east-2.amazonaws.com/dzuz14/thumbnails/mountains.jpg",
+//   "https://s3.us-east-2.amazonaws.com/dzuz14/thumbnails/redsky.jpg",
+//   "https://s3.us-east-2.amazonaws.com/dzuz14/thumbnails/sandy-shores.jpg",
+//   "https://s3.us-east-2.amazonaws.com/dzuz14/thumbnails/tree-of-life.jpg"
+// ];
+
 const SliderArr = [
-  "https://s3.us-east-2.amazonaws.com/dzuz14/thumbnails/aurora.jpg",
-  "https://s3.us-east-2.amazonaws.com/dzuz14/thumbnails/canyon.jpg",
-  "https://s3.us-east-2.amazonaws.com/dzuz14/thumbnails/city.jpg",
-  "https://s3.us-east-2.amazonaws.com/dzuz14/thumbnails/desert.jpg",
-  "https://s3.us-east-2.amazonaws.com/dzuz14/thumbnails/mountains.jpg",
-  "https://s3.us-east-2.amazonaws.com/dzuz14/thumbnails/redsky.jpg",
-  "https://s3.us-east-2.amazonaws.com/dzuz14/thumbnails/sandy-shores.jpg",
-  "https://s3.us-east-2.amazonaws.com/dzuz14/thumbnails/tree-of-life.jpg"
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
 ];
 
-const CarouselHook = () => {
+const CarouselInfinity = () => {
+
+
+  // const [cards, setCards] = React.useState([]);
+  // const [cards, setCards] = React.useState([]);
+  //
+  // SliderArr.forEach(element => console.log(element));
+  //
+  // console.log(cards)
 
   const [x, setX] = useState(0);
   const [startX, setStartX] = useState(0);
@@ -146,17 +181,23 @@ const CarouselHook = () => {
           SliderArr.map((item, index) => {
               return (
                 <li className={s.carousel__item} key={index}>
-                  <img className={s.carousel__itemImg} src={item} alt="Картинка"/>
+                  <img className={s.carousel__itemImg} src={item.link} alt={item.name}/>
                 </li>
               )
             }
           )}
       </ul>
-      <div style={{ marginTop: 20 }}>{timer}</div>
-      <button className={`${s.button} ${s.button_left}`} onClick={goLeft}>&larr;</button>
-      <button className={`${s.button} ${s.button_right}`} onClick={goRight}>&rarr;</button>
+      {/*<div style={{ marginTop: 20 }}>{timer}</div>*/}
+      <button className={`${s.button} ${s.button_left}`}
+              onClick={goLeft}
+      >
+        &larr;</button>
+      <button className={`${s.button} ${s.button_right}`}
+              onClick={goRight}
+      >
+        &rarr;</button>
     </div>
   )
 }
 
-export default CarouselHook;
+export default CarouselInfinity;
