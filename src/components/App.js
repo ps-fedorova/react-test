@@ -1,83 +1,100 @@
 import React from 'react';
-import { Route, Switch, useLocation, NavLink, } from 'react-router-dom';
+import { Route, useLocation, NavLink, } from 'react-router-dom';
 
 import "./App.css";
-import cat from "../images/cat.png";
-import carouselHook from "../images/carousel-hook.jpg";
-import carouselClass from "../images/carousel-class.jpg";
-import timer from "../images/timer.jpg";
-// import Carousel1 from "../components/Carousel1/AppCarousel"
 import CarouselHook from "./Carousel/CarouselHook";
 import CarouselClass from "./Carousel/CarouselClass";
-import  Timer  from "./Timer/Timer";
+import CarouselVerticalScrolling from "./Carousel/CarouselVerticalScrolling";
+import Timer from "./Timer/Timer";
 import CarouselInfinity from "./Carousel/CarouselInfinity";
+import OneInput from "./Input/OneInput";
+import MultipleInput from "./Input/MultipleInput";
 
 function App() {
+  const cardDate = [
+    {
+      component: <CarouselHook/>,
+      title: "простая карусель (hook)",
+      path: "/#/carousel-hook",
+      src: "/carousel-hook",
+    },
+    {
+      component: <CarouselClass/>,
+      title: "простая карусель (class), направление свайпа меняется при 600px ",
+      path: "/#/carousel-class",
+      src: "/carousel-class",
+    },
+    {
+      component: <CarouselVerticalScrolling/>,
+      title: "вертикальный скролл (class)",
+      path: "/#/carousel-vertical-scrolling",
+      src: "/carousel-vertical-scrolling",
+    },
+    {
+      component: <CarouselInfinity/>,
+      title: "здесь будет бесконечная карусель",
+      path: "/#/carousel-infinity",
+      src: "/carousel-infinity",
+    },
+    {
+      component: <Timer/>,
+      title: "таймер (class)",
+      path: "/#/timer",
+      src: "/timer",
+    },
+    {
+      component: <OneInput/>,
+      title: "поле ввода",
+      path: "/#/one-input",
+      src: "/one-input",
+    },
+    {
+      component: <MultipleInput/>,
+      title: "несколько полей ввода",
+      path: "/#/multiple-input",
+      src: "/multiple-input",
+    }
+  ]
 
 
   const { pathname } = useLocation();
 
   return (
     <div className="app">
-      <Switch>
+      <Route exact path="/">
+        <ul className="app__list">
+          {
+            cardDate.map((item, index) => {
+              return (
+                <li key={index} className="app__item">
+                  <div className="app__iframeWrap">
+                    <iframe title={item.title} src={item.path} className="app__iframe" scrolling="no"/>
+                  </div>
+                  <NavLink exact className="app__home-link" title={item.title} to={item.src}>
+                    <p className="app__img-text">{item.title}</p>
+                  </NavLink>
+                </li>
+              )
+            })
+          }
+        </ul>
+      </Route>
 
-        <Route exact path="/">
-          <ul className="app__list">
-            <li className="app__item">
-              <NavLink className="app__home-link" title="простая карусель (hook)" to="/carousel-hook">
-                <img className="app__img" src={carouselHook} alt="карусель"/>
-                <p className="app__img-text">простая карусель (hook)</p>
-              </NavLink>
-            </li>
-            <li className="app__item">
-              <NavLink className="app__home-link" title="направление свайпа меняется при 600px" to="/carousel-class">
-                <img className="app__img" src={carouselClass} alt="3"/>
-                <p className="app__img-text">простая карусель (class)</p>
-              </NavLink>
-            </li>
-            <li className="app__item">
-              <NavLink className="app__home-link" title='здесь будет бесконечная карусель' to="/carousel-infinity">
-                <img className="app__img" src={cat} alt="2"/>
-                <p className="app__img-text">здесь будет бесконечная карусель</p>
-              </NavLink>
-            </li>
-            <li className="app__item">
-            </li>
-            <li className="app__item">
-              <NavLink className="app__home-link" title="таймер (class)" to="/timer">
-                <img className="app__img" src={timer} alt="timer"/>
-                <p className="app__img-text">таймер (class)</p>
-              </NavLink>
-            </li>
-          </ul>
-        </Route>
-
-        {/*<Route path="/1">*/}
-        {/*  <Carousel1/>*/}
-        {/*</Route>*/}
-        <Route path="/carousel-hook">
-          <CarouselHook/>
-        </Route>
-        <Route path="/carousel-class">
-          <CarouselClass/>
-        </Route>
-        <Route path="/carousel-infinity">
-          <CarouselInfinity/>
-        </Route>
-        <Route path="/timer">
-          <Timer/>
-        </Route>
-      </Switch>
-
+      {cardDate.map((item, index) => {
+        return (
+          <Route key={index} path={item.src}>
+            {item.component}
+          </Route>
+        )
+      })}
 
       {pathname !== '/' &&
-      <NavLink className="app__home-link" exact to="/">
+      <NavLink exact to="/">
         <button className="app__button-home-link">
           На главную
         </button>
       </NavLink>
       }
-
     </div>
   );
 }

@@ -1,0 +1,30 @@
+.carousel {
+  width: 100vw;
+  height: 100vh;
+  overflow: scroll;
+  position: relative;
+  touch-action: none;
+}
+
+.formContainer {
+  background-color: #c2bbf1;
+  width: 50%;
+  margin: auto;
+  padding: 15px;
+}
+
+.carousel__list {
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+  position: absolute;
+  margin: 0 auto auto 0;
+  flex-direction: column;
+}
+
+.carousel__item {
+  width: 100vw;
+  height: auto;
+}
+
+

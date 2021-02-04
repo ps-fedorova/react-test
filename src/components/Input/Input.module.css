@@ -1,0 +1,27 @@
+.form {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.form__ul {
+  list-style: none;
+  padding: 0;
+}
+
+.form__li {
+
+}
+
+.form__label {
+  margin: auto;
+}
+
+.form__input {
+  display: block;
+  color: black;
+  padding: 3px 8px;
+}
