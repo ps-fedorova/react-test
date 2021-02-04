@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, useLocation, NavLink, } from 'react-router-dom';
 
 import "./App.css";
+import noImage from "./../components/images/noImage.png";
 import CarouselHook from "./Carousel/CarouselHook";
 import CarouselClass from "./Carousel/CarouselClass";
 import CarouselVerticalScrolling from "./Carousel/CarouselVerticalScrolling";
@@ -68,7 +69,11 @@ function App() {
               return (
                 <li key={index} className="app__item">
                   <div className="app__iframeWrap">
-                    <iframe title={item.title} src={item.path} className="app__iframe" scrolling="no"/>
+                    {item.path
+                      ? <iframe title={item.title} src={item.path} className="app__iframe" scrolling="no"/>
+                      : <img className="app__img" src={noImage} alt="iframe не работает"/>
+                    }
+
                   </div>
                   <NavLink exact className="app__home-link" title={item.title} to={item.src}>
                     <p className="app__img-text">{item.title}</p>
