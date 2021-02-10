@@ -4,6 +4,7 @@ import { Route, useLocation, NavLink, } from 'react-router-dom';
 import "./App.css";
 import noImage from "./../components/images/noImage.png";
 import CarouselHook from "./Carousel/CarouselHook";
+import CarouselClass500 from "./Carousel/CarouselClass500";
 import CarouselClass from "./Carousel/CarouselClass";
 import CarouselVerticalScrolling from "./Carousel/CarouselVerticalScrolling";
 import Timer from "./Timer/Timer";
@@ -24,6 +25,12 @@ function App() {
       title: "простая карусель (class), направление свайпа меняется при 600px ",
       path: "/#/carousel-class",
       src: "/carousel-class",
+    },
+    {
+      component: <CarouselClass500/>,
+      title: "простая карусель 500x500 (class)",
+      path: "/#/carousel-class-500x500",
+      src: "/carousel-class-500x500",
     },
     {
       component: <CarouselVerticalScrolling/>,
