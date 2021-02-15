@@ -11,6 +11,7 @@ import Timer from "./Timer/Timer";
 import CarouselInfinity from "./Carousel/CarouselInfinity";
 import OneInput from "./Input/OneInput";
 import MultipleInput from "./Input/MultipleInput";
+import { Iframe, IframeInside } from "./Iframe/Iframe";
 
 function App() {
   const cardDate = [
@@ -61,6 +62,18 @@ function App() {
       title: "несколько полей ввода",
       path: "/#/multiple-input",
       src: "/multiple-input",
+    },
+    {
+      component: <Iframe/>,
+      title: "Iframe",
+      path: "/#/iframe",
+      src: "/iframe",
+    },
+    {
+      component: <IframeInside/>,
+      title: "IframeInside",
+      path: "/#/iframeInside",
+      src: "/iframeInside",
     }
   ]
 
@@ -76,11 +89,8 @@ function App() {
               return (
                 <li key={index} className="app__item">
                   <div className="app__iframeWrap">
-                    {item.path
-                      ? <iframe title={item.title} src={item.path} className="app__iframe" scrolling="no"/>
-                      : <img className="app__img" src={noImage} alt="iframe не работает"/>
-                    }
-
+                    <img className="app__iframe" src={noImage} alt="iframe не работает"/>
+                    {/*  ? <iframe title={item.title} src={item.path} className="app__iframe" scrolling="no"/>*/}
                   </div>
                   <NavLink exact className="app__home-link" title={item.title} to={item.src}>
                     <p className="app__img-text">{item.title}</p>
@@ -100,7 +110,7 @@ function App() {
         )
       })}
 
-      {pathname !== '/' &&
+      {pathname !== '/' && pathname !== '/iframeInside' &&
       <NavLink exact to="/">
         <button className="app__button-home-link">
           На главную
