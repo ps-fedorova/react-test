@@ -3,15 +3,19 @@ import s from './Iframe.module.css'
 
 export const IframeInside = () => {
 
-  function displayMessage(evt) {
-    document.getElementById("received-message").innerHTML = evt.data;
-  }
 
-  if (window.addEventListener) {
-    window.addEventListener("message", displayMessage, false);
-  } else {
-    window.attachEvent("onmessage", displayMessage);
-  }
+  React.useEffect(() => {
+    if (window.addEventListener) {
+      window.addEventListener("message", displayMessage, false);
+    } else {
+      // IE8
+      window.attachEvent("onmessage", displayMessage);
+    }
+
+    function displayMessage(evt) {
+      document.getElementById("received-message").innerHTML = evt.data;
+    }
+  }, []);
 
   return (
     <div className={s.iframeInside}>
@@ -24,15 +28,18 @@ export const IframeInside = () => {
 export const Iframe = () => {
   const iframeRef = React.useRef();
 
-  window.onload = function () {
+  const onload = () => {
     const form = document.getElementById("the-form");
     const myMessage = document.getElementById("my-message");
 
     form.onsubmit = function () {
       iframeRef.current.contentWindow.postMessage(myMessage.value, "*");
-      return false;
     };
   };
+
+  React.useEffect(() => {
+    window.onload = onload
+  }, [])
 
   return (
     <div className={s.iframe}>
@@ -40,6 +47,7 @@ export const Iframe = () => {
       <form className={s.form} id="the-form">
         <input className={s.input} type="text" id="my-message"/>
         <input className={`${s.input} ${s.inputButton}`} type="submit" value="postMessage"/>
+        <input type="button" value="Перезагрузить страницу"/>
       </form>
     </div>
   )
