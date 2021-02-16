@@ -3,7 +3,6 @@ import s from './Iframe.module.css'
 
 export const IframeInside = () => {
 
-
   React.useEffect(() => {
     if (window.addEventListener) {
       window.addEventListener("message", displayMessage, false);
@@ -27,13 +26,12 @@ export const IframeInside = () => {
 
 export const Iframe = () => {
   const iframeRef = React.useRef();
+  const formRef = React.useRef();
+  const messageRef = React.useRef();
 
   const onload = () => {
-    const form = document.getElementById("the-form");
-    const myMessage = document.getElementById("my-message");
-
-    form.onsubmit = function () {
-      iframeRef.current.contentWindow.postMessage(myMessage.value, "*");
+    formRef.current.onsubmit = function () {
+      iframeRef.current.contentWindow.postMessage(messageRef.current.value, "*");
     };
   };
 
@@ -43,10 +41,10 @@ export const Iframe = () => {
 
   return (
     <div className={s.iframe}>
-      <iframe ref={iframeRef} id="iframe" title="iframe" src="/#/iframeInside" frameBorder="0" scrolling="no"/>
-      <form className={s.form} id="the-form">
-        <input className={s.input} type="text" id="my-message"/>
-        <input className={`${s.input} ${s.inputButton}`} type="submit" value="postMessage"/>
+      <iframe ref={iframeRef} title="iframe" src="/#/iframeInside" frameBorder="0" scrolling="no"/>
+      <form ref={formRef} className={s.form} >
+        <input ref={messageRef} className={s.input} type="text" />
+        <button className={`${s.input} ${s.inputButton}`} type="submit">postMessage</button>
       </form>
     </div>
   )
