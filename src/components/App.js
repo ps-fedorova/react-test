@@ -64,17 +64,17 @@ function App() {
       src: "/multiple-input",
     },
     {
+      component: <IframeInside/>,
+      title: "IframeInside",
+      path: "/#/iframeInside",
+      src: "/iframeInside",
+    },
+    {
       component: <Iframe/>,
       title: "Iframe",
       path: "/#/iframe",
       src: "/iframe",
     },
-    {
-      component: <IframeInside/>,
-      title: "IframeInside",
-      path: "/#/iframeInside",
-      src: "/iframeInside",
-    }
   ]
 
 

@@ -47,7 +47,6 @@ export const Iframe = () => {
       <form className={s.form} id="the-form">
         <input className={s.input} type="text" id="my-message"/>
         <input className={`${s.input} ${s.inputButton}`} type="submit" value="postMessage"/>
-        <input type="button" value="Перезагрузить страницу"/>
       </form>
     </div>
   )
