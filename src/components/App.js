@@ -25,12 +25,18 @@ function App() {
   };
 
   React.useEffect(() => {
-      function displayMessage(evt) {
-        setMessage(evt.data)
-      }
-      window.addEventListener("message", displayMessage, false);
-    }
-  )
+      window.addEventListener("message", (evt) => setMessage(evt.data), false);
+    }, [])
+
+  // React.useEffect(() => {
+  //   function displayMessage(evt) {
+  //     setMessage(evt.data)
+  //   }
+  //   window.addEventListener('message', displayMessage, false)
+  //   return () => {
+  //     window.addEventListener('message', displayMessage, false)
+  //   }
+  // }, [message])
 
   const cardDate = [
     {
