@@ -1,23 +1,8 @@
 import React from 'react';
 import s from './Iframe.module.css'
 
-export const IframeInside = () => {
-  const [message, setMessage] = React.useState('message');
-
-  // React.useEffect(() => {
-    if (window.addEventListener) {
-      window.addEventListener("message", displayMessage, false);
-    } else {
-      // IE8
-      window.attachEvent("onmessage", displayMessage);
-    }
-
-    function displayMessage(evt) {
-      setMessage(evt.data)
-      // document.getElementById("received-message").innerHTML = evt.data;
-    }
-  // }, []);
-
+export const IframeInside = ({ message }) => {
+  console.log(`IframeInside: ${message}`)
   return (
     <div className={s.iframeInside}>
       <h2 id="received-message" style={{ color: "white" }}>
@@ -26,27 +11,22 @@ export const IframeInside = () => {
     </div>)
 }
 
-export const Iframe = () => {
+export const Iframe = ({ message, onload }) => {
   const iframeRef = React.useRef();
-  const formRef = React.useRef();
-  const messageRef = React.useRef();
 
-  const onload = () => {
-    formRef.current.onsubmit = function () {
-      iframeRef.current.contentWindow.postMessage(messageRef.current.value, "*");
-    };
+  const handleSubmit = () => iframeRef.current.contentWindow.postMessage(message, "*");
+
+  const onChange = (evt) => {
+    onload(evt.target.value);
+    handleSubmit();
   };
 
-  // React.useEffect(() => {
-    window.onload = onload
-  // }, [])
-
+  console.log(`Iframe: ${message}`)
   return (
     <div className={s.iframe}>
       <iframe ref={iframeRef} title="iframe" src="/#/iframeInside" frameBorder="0" scrolling="no"/>
-      <form ref={formRef} className={s.form} >
-        <input ref={messageRef} className={s.input} type="text" />
-        <button className={`${s.input} ${s.inputButton}`} type="submit">postMessage</button>
+      <form onSubmit={handleSubmit} className={s.form}>
+        <input className={s.input} type="text" value={message} onChange={onChange}/>
       </form>
     </div>
   )

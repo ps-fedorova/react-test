@@ -14,6 +14,25 @@ import MultipleInput from "./Input/MultipleInput";
 import { Iframe, IframeInside } from "./Iframe/Iframe";
 
 function App() {
+
+  const { pathname } = useLocation();
+  const [message, setMessage] = React.useState('');
+
+  const onload = (target) => {
+    setMessage(target);
+  };
+
+  function displayMessage(evt) {
+    setMessage(evt.data)
+  }
+
+  if (window.addEventListener) {
+    window.addEventListener("message", displayMessage, false);
+  } else {
+    // IE8
+    window.attachEvent("onmessage", displayMessage);
+  }
+
   const cardDate = [
     {
       component: <CarouselHook/>,
@@ -58,27 +77,24 @@ function App() {
       src: "/one-input",
     },
     {
-      component: <MultipleInput/>,
+      component: <MultipleInput />,
       title: "несколько полей ввода",
       path: "/#/multiple-input",
       src: "/multiple-input",
     },
     {
-      component: <IframeInside/>,
+      component: <IframeInside message={message} onload={onload} />,
       title: "IframeInside",
       path: "/#/iframeInside",
       src: "/iframeInside",
     },
     {
-      component: <Iframe/>,
+      component: <Iframe message={message} onload={onload} setMessage={setMessage}/>,
       title: "Iframe",
       path: "/#/iframe",
       src: "/iframe",
     },
   ]
-
-
-  const { pathname } = useLocation();
 
   return (
     <div className="app">
