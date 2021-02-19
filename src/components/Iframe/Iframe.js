@@ -2,8 +2,9 @@ import React from 'react';
 import s from './Iframe.module.css'
 
 export const IframeInside = () => {
+  const [message, setMessage] = React.useState('message');
 
-  React.useEffect(() => {
+  // React.useEffect(() => {
     if (window.addEventListener) {
       window.addEventListener("message", displayMessage, false);
     } else {
@@ -12,14 +13,15 @@ export const IframeInside = () => {
     }
 
     function displayMessage(evt) {
-      document.getElementById("received-message").innerHTML = evt.data;
+      setMessage(evt.data)
+      // document.getElementById("received-message").innerHTML = evt.data;
     }
-  }, []);
+  // }, []);
 
   return (
     <div className={s.iframeInside}>
       <h2 id="received-message" style={{ color: "white" }}>
-        {'message'}
+        {message}
       </h2>
     </div>)
 }
@@ -35,9 +37,9 @@ export const Iframe = () => {
     };
   };
 
-  React.useEffect(() => {
+  // React.useEffect(() => {
     window.onload = onload
-  }, [])
+  // }, [])
 
   return (
     <div className={s.iframe}>
