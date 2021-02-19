@@ -7,6 +7,12 @@
   align-items: center;
 }
 
+@media (max-width: 600px) {
+  .iframeInside {
+    background-color: #217381;
+  }
+}
+
 .iframe {
   background-color: #0e3137;
   width: 100vw;
