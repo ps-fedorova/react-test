@@ -16,22 +16,21 @@ import { Iframe, IframeInside } from "./Iframe/Iframe";
 function App() {
 
   const { pathname } = useLocation();
-  const [message, setMessage] = React.useState('');
+  const [message, setMessage] = React.useState('message');
+
+  console.log(message)
 
   const onload = (target) => {
     setMessage(target);
   };
 
-  function displayMessage(evt) {
-    setMessage(evt.data)
-  }
-
-  if (window.addEventListener) {
-    window.addEventListener("message", displayMessage, false);
-  } else {
-    // IE8
-    window.attachEvent("onmessage", displayMessage);
-  }
+  React.useEffect(() => {
+      function displayMessage(evt) {
+        setMessage(evt.data)
+      }
+      window.addEventListener("message", displayMessage, false);
+    }
+  )
 
   const cardDate = [
     {
@@ -77,13 +76,13 @@ function App() {
       src: "/one-input",
     },
     {
-      component: <MultipleInput />,
+      component: <MultipleInput/>,
       title: "несколько полей ввода",
       path: "/#/multiple-input",
       src: "/multiple-input",
     },
     {
-      component: <IframeInside message={message} onload={onload} />,
+      component: <IframeInside message={message} onload={onload}/>,
       title: "IframeInside",
       path: "/#/iframeInside",
       src: "/iframeInside",
