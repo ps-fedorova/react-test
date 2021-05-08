@@ -12,21 +12,26 @@ import CarouselInfinity from "./Carousel/CarouselInfinity";
 import OneInput from "./Input/OneInput";
 import MultipleInput from "./Input/MultipleInput";
 import { Iframe, IframeInside } from "./Iframe/Iframe";
+import { ResizableBox } from "./Resizer/Resizer";
 
 function App() {
 
   const { pathname } = useLocation();
   const [message, setMessage] = React.useState('message');
 
-  console.log(message)
+  // console.log(message)
 
   const onload = (target) => {
     setMessage(target);
   };
 
   React.useEffect(() => {
-      window.addEventListener("message", (evt) => setMessage(evt.data), false);
-    }, [])
+    console.log("start UseEffect");
+    window.addEventListener("message", (evt) => {
+      console.log(`evt ${evt.data}`);
+      setMessage(evt.data)
+    }, true);
+  })
 
   // React.useEffect(() => {
   //   function displayMessage(evt) {
@@ -88,7 +93,7 @@ function App() {
       src: "/multiple-input",
     },
     {
-      component: <IframeInside message={message} onload={onload}/>,
+      component: <IframeInside message={message} onload={onload} setMessage={setMessage}/>,
       title: "IframeInside",
       path: "/#/iframeInside",
       src: "/iframeInside",
@@ -99,6 +104,13 @@ function App() {
       path: "/#/iframe",
       src: "/iframe",
     },
+    {
+      component: <ResizableBox />,
+      title: "ResizableBox",
+      path: "/#/ResizableBox",
+      src: "/ResizableBox",
+    },
+
   ]
 
   return (

@@ -12,6 +12,7 @@ export const Iframe = ({ message, onload }) => {
   const iframeRef = React.useRef();
 
   const handleSubmit = React.useCallback(() => {
+    console.log(`this is handleSubmit ${message}`)
     iframeRef.current.contentWindow.postMessage(message, "*")
   },[message]);
 
@@ -21,7 +22,7 @@ export const Iframe = ({ message, onload }) => {
 
   React.useEffect(() => {
     handleSubmit();
-  }, [handleSubmit])
+  }, [handleSubmit, message])
 
   return (
     <div className={s.iframe}>

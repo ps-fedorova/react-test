@@ -29,6 +29,7 @@ class CarouselClass extends React.Component {
       mouseDown: false,
       timerTranslateXY: 0,
       timerTranslateXYGo: false,
+      counter: 0
     };
   }
 
@@ -56,6 +57,15 @@ class CarouselClass extends React.Component {
   }
 
   handleClickPrev = () => {
+    console.log(this.state.counter);
+    this.setState(prev => {
+      return (
+        { counter: prev.counter + 1 }
+      )
+    })
+    console.log(this.state.counter);
+
+
     if (this.state.x < 0) {
       this.setState({
         x: (this.state.x + widthOfTheSlide),

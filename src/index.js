@@ -7,11 +7,11 @@ import App from './components/App';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
-  <React.StrictMode>
+  //<React.StrictMode>
     <HashRouter>
       <App/>
     </HashRouter>
-  </React.StrictMode>
+ // </React.StrictMode>
 ,
   document.getElementById('root'),
 );
