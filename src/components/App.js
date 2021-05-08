@@ -1,5 +1,5 @@
-import React from 'react';
-import { Route, useLocation, NavLink, } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Route, useLocation, NavLink } from 'react-router-dom';
 
 import "./App.css";
 import noImage from "./../components/images/noImage.png";
@@ -15,33 +15,27 @@ import { Iframe, IframeInside } from "./Iframe/Iframe";
 import { ResizableBox } from "./Resizer/Resizer";
 
 function App() {
-
   const { pathname } = useLocation();
-  const [message, setMessage] = React.useState('message');
+  const [message, setMessage] = React.useState('');
 
-  // console.log(message)
-
-  const onload = (target) => {
+  const handleChangeMessage = (target) => {
     setMessage(target);
   };
 
-  React.useEffect(() => {
-    console.log("start UseEffect");
-    window.addEventListener("message", (evt) => {
-      console.log(`evt ${evt.data}`);
-      setMessage(evt.data)
-    }, true);
-  })
+  useEffect(() => {
+    if (window.addEventListener) {
+      window.addEventListener("message", displayMessage, false);
+    } else {
+      window.attachEvent("onmessage", displayMessage);
+    }
+    return () => window.removeEventListener("message", displayMessage)
+  }, [])
 
-  // React.useEffect(() => {
-  //   function displayMessage(evt) {
-  //     setMessage(evt.data)
-  //   }
-  //   window.addEventListener('message', displayMessage, false)
-  //   return () => {
-  //     window.addEventListener('message', displayMessage, false)
-  //   }
-  // }, [message])
+  const displayMessage = (evt) => {
+    if(typeof(evt.data) !== 'object') {
+      setMessage(evt.data)
+    }
+  }
 
   const cardDate = [
     {
@@ -93,13 +87,13 @@ function App() {
       src: "/multiple-input",
     },
     {
-      component: <IframeInside message={message} onload={onload} setMessage={setMessage}/>,
+      component: <IframeInside message={message} handleChangeMessage={handleChangeMessage}/>,
       title: "IframeInside",
       path: "/#/iframeInside",
       src: "/iframeInside",
     },
     {
-      component: <Iframe message={message} onload={onload} setMessage={setMessage}/>,
+      component: <Iframe message={message} handleChangeMessage={handleChangeMessage} />,
       title: "Iframe",
       path: "/#/iframe",
       src: "/iframe",
@@ -123,7 +117,6 @@ function App() {
                 <li key={index} className="app__item">
                   <div className="app__iframeWrap">
                     <img className="app__iframe" src={noImage} alt="iframe не работает"/>
-                    {/*  ? <iframe title={item.title} src={item.path} className="app__iframe" scrolling="no"/>*/}
                   </div>
                   <NavLink exact className="app__home-link" title={item.title} to={item.src}>
                     <p className="app__img-text">{item.title}</p>
@@ -144,11 +137,11 @@ function App() {
       })}
 
       {pathname !== '/' && pathname !== '/iframeInside' &&
-      <NavLink exact to="/">
-        <button className="app__button-home-link">
-          На главную
-        </button>
-      </NavLink>
+        <NavLink exact to="/">
+          <button className="app__button-home-link">
+            На главную
+          </button>
+        </NavLink>
       }
     </div>
   );
